@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n mptt_tags %}
+
+{% block title %}{{ city.name }}{% endblock %}
+
+{% block content %}
+<h1>{{ city.name }}</h1>
+<ul class="root">
+    {% recursetree areas %}
+        <li>
+            <a href="{% url 'stores-area' node.slug %}">{{ node.name }}</a>
+            {% if not node.is_leaf_node %}
+                <ul class="children">
+                    {{ children }}
+                </ul>
+            {% endif %}
+        </li>
+    {% endrecursetree %}
+</ul>
+{% endblock %}

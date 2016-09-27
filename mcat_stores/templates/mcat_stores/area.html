@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n mptt_tags %}
+
+{% block title %}{{ city.name }} {{ area.name }}{% endblock %}
+
+{% block content %}
+<h1>{{ city.name }} {{ area.name }}</h1>
+<ul class="list-group">
+	{% for store in stores %}
+		<li class="list-group-item">
+			<a href="{% url 'stores-store' store.slug %}">{{ store.name }}</a>
+		</li>
+	{% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load staticfiles i18n mptt_tags %}
+
+{% block title %}{{ store.name }}{% endblock %}
+{% block extra_head %}
+	<link rel="stylesheet" media="screen, projection" href="{% static 'mcat/mcat.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="row">
+	<div class="col-xs-12 text-center">
+		<h1>{% trans "Promotions for" %} {{ store.name }}</h1>
+		{% for product in products %}
+			{% with product.category as category %}
+				{% include "mcat/products/product_inline.html" %}
+				{{ product.category }}
+			{% endwith %}
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}
